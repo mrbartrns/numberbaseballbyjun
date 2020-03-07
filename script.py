@@ -28,10 +28,11 @@ class QuestionNumber:
 
     def __init__(self):
         self.init_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    # 한번 뽑은 숫자는 다시 나오게 하면 안되므로, 배열에서 제외되야 함.
-
+        self.test_array = random.sample(self.init_array, 4)
+        # random module을 사용하지 않고 구현하는 방법 알아보기.
+        
     def __repr__(self):
-        return str(self.init_array)
+        return str(self.test_array)
 
 
 class AnswerNumber:
