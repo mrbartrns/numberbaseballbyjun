@@ -19,5 +19,19 @@ def welcome():
     print("B (Ball): 숫자가 존재하나 그 숫자의 위치가 틀림")
     print("OUT (Out): 숫자가 배열에 존재하지 않음")
 
+class QuestionNumber:
+    """
+    이 클래스는 랜덤한 숫자를 배열로 만들어 저장하는 클래스입니다.
+    """
+    def __init__(self):
 
-welcome()
+
+class AnswerNumber:
+    """
+    이 클래스는 플레이어가 숫자를 맞추는 클래스입니다.
+    """
+
+class Rule:
+    """
+    이 클래스는 게임의 규칙을 통해 해결해나가는 과정을 구현하는 클래스입니다.
+    """
