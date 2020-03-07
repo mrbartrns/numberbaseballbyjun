@@ -30,7 +30,7 @@ class QuestionNumber:
         self.init_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         self.test_array = random.sample(self.init_array, 4)
         # random module을 사용하지 않고 구현하는 방법 알아보기.
-        
+
     def __repr__(self):
         return str(self.test_array)
 
