@@ -8,17 +8,20 @@ class QuestionNumber:
 
     def __init__(self):
         self.init_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-    # 한번 뽑은 숫자는 다시 나오게 하면 안되므로, 배열에서 제외되야 함.
+        self.test_array = random.sample(self.init_array, 4)
+        first_zero = True
+        while first_zero:  # 만약 0이 맨 앞자리에 올 경우, 숫자를 다시 추첨함.
+            if self.test_array[0] == 0:
+                self.test_array = random.sample(self.init_array, 4)
+            else:
+                first_zero = False
+        # random module을 사용하지 않고 구현하는 방법 알아보기.
 
     def __repr__(self):
-        return str(self.init_array)
+        return str(self.test_array)
 
 
 testunit = QuestionNumber()
-print(testunit.init_array)
+print(testunit.test_array)
 
-flag = True
-random_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-test_array = random.sample(random_array, 4)
-print(test_array)
+# Todo: 0이 앞으로 올 경우, 다시 수를 추첨하는 방식 고려중
