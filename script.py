@@ -90,8 +90,9 @@ class Rule:
     def __len__(self):
         return len(self.rule_array)
 
+
 def rule():
-    
+    pass
 
 
 # 아직 사용하면 안됨!
