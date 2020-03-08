@@ -1,4 +1,5 @@
 import random
+import unittest
 
 init_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -68,7 +69,6 @@ class AnswerNumber:
         return len(self.answer_array)
 
 
-
 class Rule:
     """
     이 클래스는 게임의 규칙을 통해 해결해나가는 과정을 구현하는 클래스입니다.
@@ -77,17 +77,21 @@ class Rule:
     # Todo: pass부분 꼭 지울것!
 
     def __init__(self):
-        self.rule_array = []
+        self.rule_array = test_array.test_array
 
+    # __init__ 과 따로 두어야 하는 이유는 한 턴이 끝난 후 배열이 초기화 되어야 하기 때문임.
     def rule_append(self):
-        for _ in test_array.test_array:
-            self.rule_array.append(_)
-
         for _ in answer_array.answer_array:
             self.rule_array.append(_)
 
     def __repr__(self):
         return str(self.rule_array)
+
+    def __len__(self):
+        return len(self.rule_array)
+
+def rule():
+    
 
 
 # 아직 사용하면 안됨!
