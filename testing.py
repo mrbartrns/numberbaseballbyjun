@@ -4,7 +4,7 @@ test2 = [5, 6, 7, 4]
 test3 = [1, 2, 3, 4, 5, 6, 7, 4]
 test4 = []
 
-
+# def rule(test1, test2):
 def rule():
     """
     test_array 와 answer_array 요소를 각각 비교,(전체를 통채로 비교해서는 안됨)
