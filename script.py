@@ -1,7 +1,7 @@
 import random
 
-
 init_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
 
 def welcome():
     """
@@ -32,6 +32,7 @@ class QuestionNumber:
 
     def __init__(self):
         self.test_array = random.sample(init_array, 4)
+        self.rule_array = []
         # 만약 0이 맨 앞자리에 올 경우, 숫자를 다시 추첨함.
         while True:
             if self.test_array[0] == 0:
@@ -48,18 +49,28 @@ class AnswerNumber:
     """
     이 클래스는 플레이어가 숫자를 맞추는 클래스입니다.
     """
+
     def __init__(self):
         self.answer_array = []
 
     def enqueue(self, baseball_num):
         assert type(baseball_num) is int, '0보다 크거나 같은 정수를 입력하세요!'
         self.answer_array.append(baseball_num)
-    
+
     def __repr__(self):
         return str(self.answer_array)
 
 
-class Rule:
+class Rule(QuestionNumber, AnswerNumber):
     """
     이 클래스는 게임의 규칙을 통해 해결해나가는 과정을 구현하는 클래스입니다.
     """
+    def rule_append(self):
+        for _ in self.test_array:
+            self.rule_array.append(_)
+
+        for _ in self.answer_array:
+            self.rule_array.append(_)
+
+    def __repr__(self):
+        return self.rule_array
