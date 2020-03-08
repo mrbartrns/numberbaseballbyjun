@@ -80,24 +80,33 @@ class AnswerNumber:
         return str(self.answer_array)
 
 
-class Rule(QuestionNumber, AnswerNumber):
+test_array = QuestionNumber()
+answer_array = AnswerNumber()
+answer_array.enqueue(3)
+answer_array.enqueue(4)
+answer_array.enqueue(5)
+answer_array.enqueue(6)
+
+
+class Rule:
     """
     이 클래스는 게임의 규칙을 통해 해결해나가는 과정을 구현하는 클래스입니다.
     """
+
+    def __init__(self):
+        self.rule_array = []
+
     def rule_append(self):
-        for _ in self.test_array:
+        for _ in test_array.test_array:
             self.rule_array.append(_)
 
-        for _ in self.answer_array:
+        for _ in answer_array.answer_array:
             self.rule_array.append(_)
 
     def __repr__(self):
-        return self.rule_array
+        return str(self.rule_array)
 
 
-a = QuestionNumber()
-b = AnswerNumber()
 c = Rule()
-
 c.rule_append()
 print(c)
