@@ -1,6 +1,8 @@
 import random
 
 
+init_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
 def welcome():
     """
     Welcome message at beginning of game with basic win conditions
@@ -29,14 +31,15 @@ class QuestionNumber:
     # Todo: Random 모듈을 사용하지 않고 구현할 수 있는가?
 
     def __init__(self):
-        self.init_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-        self.test_array = random.sample(self.init_array, 4)
-        while True:  # 만약 0이 맨 앞자리에 올 경우, 숫자를 다시 추첨함.
+        self.test_array = random.sample(init_array, 4)
+        # 만약 0이 맨 앞자리에 올 경우, 숫자를 다시 추첨함.
+        while True:
             if self.test_array[0] == 0:
-                self.test_array = random.sample(self.init_array, 4)
+                self.test_array = random.sample(init_array, 4)
             else:
                 break
 
+    # array의 요소를 보여주는 함수
     def __repr__(self):
         return str(self.test_array)
 
@@ -45,6 +48,15 @@ class AnswerNumber:
     """
     이 클래스는 플레이어가 숫자를 맞추는 클래스입니다.
     """
+    def __init__(self):
+        self.answer_array = []
+
+    def enqueue(self, baseball_num):
+        assert type(baseball_num) is int, '0보다 크거나 같은 수를 입력하세요!'
+        self.answer_array.append(baseball_num)
+    
+    def __repr__(self):
+        return str(self.answer_array)
 
 
 class Rule:
