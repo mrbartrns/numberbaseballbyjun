@@ -52,7 +52,7 @@ class AnswerNumber:
         self.answer_array = []
 
     def enqueue(self, baseball_num):
-        assert type(baseball_num) is int, '0보다 크거나 같은 수를 입력하세요!'
+        assert type(baseball_num) is int, '0보다 크거나 같은 정수를 입력하세요!'
         self.answer_array.append(baseball_num)
     
     def __repr__(self):
