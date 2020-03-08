@@ -28,8 +28,6 @@ class QuestionNumber:
     이 클래스는 랜덤한 숫자를 배열로 만들어 저장하는 클래스입니다.
     """
 
-    # Todo: Random 모듈을 사용하지 않고 구현할 수 있는가?
-
     def __init__(self):
         self.test_array = random.sample(init_array, 4)
         self.rule_array = []
@@ -40,14 +38,18 @@ class QuestionNumber:
             else:
                 break
 
-    # array의 요소를 보여주는 함수
+    # test_array의 요소를 보여주는 함수
     def __repr__(self):
         return str(self.test_array)
+
+    # test_array의 길이를 보여주는 함수
+    def __len__(self):
+        return len(self.test_array)
 
 
 class AnswerNumber:
     """
-    이 클래스는 플레이어가 숫자를 맞추는 클래스입니다.
+    이 클래스는 플레이어가 숫자를 맞추는데 사용되는 클래스입니다.
     """
 
     def __init__(self):
@@ -57,14 +59,22 @@ class AnswerNumber:
         assert type(baseball_num) is int, '0보다 크거나 같은 정수를 입력하세요!'
         self.answer_array.append(baseball_num)
 
+    # answer_array의 요소를 보여주는 함수
     def __repr__(self):
         return str(self.answer_array)
+
+    # answer_array의 길이를 보여주는 함수
+    def __len__(self):
+        return len(self.answer_array)
+
 
 
 class Rule:
     """
     이 클래스는 게임의 규칙을 통해 해결해나가는 과정을 구현하는 클래스입니다.
     """
+    pass
+    # Todo: pass부분 꼭 지울것!
 
     def __init__(self):
         self.rule_array = []
@@ -78,3 +88,8 @@ class Rule:
 
     def __repr__(self):
         return str(self.rule_array)
+
+
+# 아직 사용하면 안됨!
+test_array = QuestionNumber()
+answer_array = AnswerNumber()
