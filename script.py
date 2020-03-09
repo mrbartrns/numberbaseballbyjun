@@ -113,23 +113,28 @@ class NumberIndex:
 
 
 def num_input():
-    # Todo: 음수를 입력받지 않도록 해야함
-    """
-    0이 들어가지 않고 숫자 4개를 받는 함수입니다.
-    :parameter None
-    :return answer_array.answer_array
-    """
+    # Todo: 중복되는 숫자를 받지 않도록 해야 함.
     i_count = 0
-    while True:
+    num_flag = True
+    while num_flag:
         num = int(input('숫자를 입력하세요: '))
-        answer_array.enqueue(num)
-        if answer_array.answer_array[0] == 0:
-            print('첫째 자리에는 0이 입력될 수 없습니다.')
-            answer_array.pop()
+        if 0 <= num < 10:
+            answer_array.enqueue(num)
+            if answer_array.answer_array[0] == 0:
+                print('첫째 자리에는 0이 입력될 수 없습니다.')
+                answer_array.pop()
+            else:
+                count_array = []
+                for _ in range(10):
+                    count_array.append(answer_array.answer_array.count(_))
+                for _ in count_array:
+                    if _ == 2:
+                        print('중복되는 숫자를 입력할 수 없습니다.')
+                        answer_array.pop()
+            if len(answer_array.answer_array) == 4:
+                num_flag = False
         else:
-            i_count += 1
-        if i_count == 4:
-            break
+            print('0보다 크거나 같고 10보다 작은 수를 입력하세요.')
 
 
 def rule_check(number_array, index_array):
