@@ -114,7 +114,12 @@ class NumberIndex:
 
 
 def num_input():
-    i = 0
+    """
+    0이 들어가지 않고 숫자 4개를 받는 함수입니다.
+    :parameter None
+    :return answer_array.answer_array
+    """
+    i_count = 0
     while True:
         num = int(input('숫자를 입력하세요: '))
         answer_array.enqueue(num)
@@ -122,8 +127,8 @@ def num_input():
             print('첫째 자리에는 0이 입력될 수 없습니다.')
             answer_array.pop()
         else:
-            i += 1
-        if i == 4:
+            i_count += 1
+        if i_count == 4:
             break
 
 

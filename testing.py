@@ -129,7 +129,7 @@ class NumberIndex:
 
 
 def num_input():
-    i = 0
+    i_count = 0
     while True:
         num = int(input('숫자를 입력하세요: '))
         answer_array.enqueue(num)
@@ -137,8 +137,8 @@ def num_input():
             print('첫째 자리에는 0이 입력될 수 없습니다.')
             answer_array.pop()
         else:
-            i += 1
-        if i == 4:
+            i_count += 1
+        if i_count == 4:
             break
 
 
@@ -150,5 +150,6 @@ number_array = NumberIndex()
 print(test_array)
 num_input()
 print(answer_array)
+rule_array.rule_append()
 print(rule_array)
 print(number_array)
