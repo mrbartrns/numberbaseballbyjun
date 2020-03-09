@@ -114,6 +114,7 @@ class NumberIndex:
 
 
 def num_input():
+    # Todo: 음수를 입력받지 않도록 해야함
     """
     0이 들어가지 않고 숫자 4개를 받는 함수입니다.
     :parameter None
@@ -130,6 +131,10 @@ def num_input():
             i_count += 1
         if i_count == 4:
             break
+
+
+def rule_check(number_array, index_array):
+    pass
 
 
 # 아직 사용하면 안됨!
