@@ -95,7 +95,9 @@ class Rule:
     # Todo: pass부분 꼭 지울것!
 
     def __init__(self):
-        self.rule_array = test_array.test_array
+        self.rule_array = []
+        for _ in range(4):
+            self.rule_array.append(test_array.test_array[_])
 
     # __init__ 과 따로 두어야 하는 이유는 한 턴이 끝난 후 배열이 초기화 되어야 하기 때문임.
     def rule_append(self):
@@ -113,20 +115,14 @@ class NumberIndex:
     def __init__(self):
         self.number_array = []
         self.Index_array = []
+        for _ in range(10):
+            self.number_array.append(rule_array.rule_array.count(_))
 
     def __repr__(self):
         return str(self.number_array)
 
     def __len__(self):
         return len(self.number_array)
-
-
-def rule():
-    for _ in range(0, 10):
-        number_array.number_array.append(rule_array.rule_array.count(_))
-
-    # 임시로 리턴값 지정
-    return number_array.number_array
 
 
 # 아직 사용하면 안됨!
@@ -143,4 +139,5 @@ rule_array.rule_append()
 print(test_array)
 print(answer_array)
 print(rule_array)
-print(rule())
+print(number_array)
+

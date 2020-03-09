@@ -31,7 +31,7 @@ class QuestionNumber:
 
     def __init__(self):
         self.test_array = random.sample(init_array, 4)
-        self.rule_array = []
+
         # 만약 0이 맨 앞자리에 올 경우, 숫자를 다시 추첨함.
         while True:
             if self.test_array[0] == 0:
@@ -71,13 +71,14 @@ class AnswerNumber:
 
 class Rule:
     """
-    이 클래스는 게임의 규칙을 통해 해결해나가는 과정을 구현하는 클래스입니다.
+    이 클래스는 게임의 규칙을 만들어 나가는데 필요한 클래스입니다.
     """
-    pass
-    # Todo: pass부분 꼭 지울것!
 
+    # append를 따로 해야 하는 이유는, rule_array와 test_array는 구별되어야 하기 때문
     def __init__(self):
-        self.rule_array = test_array.test_array
+        self.rule_array = []
+        for _ in range(4):
+            self.rule_array.append(test_array.test_array[_])
 
     # __init__ 과 따로 두어야 하는 이유는 한 턴이 끝난 후 배열이 초기화 되어야 하기 때문임.
     def rule_append(self):
@@ -91,10 +92,26 @@ class Rule:
         return len(self.rule_array)
 
 
-def rule():
-    pass
+class NumberIndex:
+    """
+    이 클래스는 숫자의 위치 저장 및 숫자의 갯수를 저장하는데 필요한 클래스입니다.
+    """
+
+    def __init__(self):
+        self.number_array = []
+        self.Index_array = []
+        for _ in range(10):
+            self.number_array.append(rule_array.rule_array.count(_))
+
+    def __repr__(self):
+        return str(self.number_array)
+
+    def __len__(self):
+        return len(self.number_array)
 
 
 # 아직 사용하면 안됨!
 test_array = QuestionNumber()
 answer_array = AnswerNumber()
+rule_array = Rule()
+number_array = NumberIndex()
