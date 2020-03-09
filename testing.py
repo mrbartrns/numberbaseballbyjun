@@ -118,6 +118,8 @@ class NumberIndex:
     def __init__(self):
         self.number_array = []
         self.Index_array = []
+
+    def num_append(self):
         for _ in range(10):
             self.number_array.append(rule_array.rule_array.count(_))
 
@@ -151,5 +153,6 @@ print(test_array)
 num_input()
 print(answer_array)
 rule_array.rule_append()
+number_array.num_append()
 print(rule_array)
 print(number_array)

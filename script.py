@@ -60,6 +60,7 @@ class AnswerNumber:
         assert type(baseball_num) is int, '0보다 크거나 같은 정수를 입력하세요!'
         self.answer_array.append(baseball_num)
 
+    # 오직 첫번재로 입력시에만 사용!
     def pop(self):
         self.answer_array.pop(0)
 
@@ -96,13 +97,11 @@ class Rule:
 
 
 class NumberIndex:
-    """
-    이 클래스는 숫자의 위치 저장 및 숫자의 갯수를 저장하는데 필요한 클래스입니다.
-    """
-
     def __init__(self):
         self.number_array = []
         self.Index_array = []
+
+    def num_append(self):
         for _ in range(10):
             self.number_array.append(rule_array.rule_array.count(_))
 
