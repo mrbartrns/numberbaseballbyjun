@@ -113,24 +113,29 @@ class NumberIndex:
 
 
 def num_input():
-    # Todo: 중복되는 숫자를 받지 않도록 해야 함.
-    i_count = 0
     num_flag = True
+    # 숫자를 입력받는 함수
     while num_flag:
         num = int(input('숫자를 입력하세요: '))
+        # 숫자의 범위 지정, 숫자는 0에서 10까지임
         if 0 <= num < 10:
             answer_array.enqueue(num)
+            # 첫째 짜리에 0을 입력받을 경우, 다시 끄집어냄
             if answer_array.answer_array[0] == 0:
                 print('첫째 자리에는 0이 입력될 수 없습니다.')
                 answer_array.pop()
+            # 위의 조건을 모두 만족시, array의 길이와 중복되는 숫자 검사
             else:
+                # count_array는 숫자의 종류를 저장하는 배열로 rule_array와 동일한 역할을 하지만 길이가 다름
                 count_array = []
                 for _ in range(10):
                     count_array.append(answer_array.answer_array.count(_))
+                # 중복시 숫자를 끄집어냄
                 for _ in count_array:
                     if _ == 2:
                         print('중복되는 숫자를 입력할 수 없습니다.')
                         answer_array.pop()
+            # 플레이어가 4개의 숫자를 조건을 만족하여 입력할 경우, while문 종료
             if len(answer_array.answer_array) == 4:
                 num_flag = False
         else:
