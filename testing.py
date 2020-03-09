@@ -78,6 +78,9 @@ class AnswerNumber:
         assert type(baseball_num) is int, '0보다 크거나 같은 정수를 입력하세요!'
         self.answer_array.append(baseball_num)
 
+    def pop(self):
+        self.answer_array.pop(0)
+
     # answer_array의 요소를 보여주는 함수
     def __repr__(self):
         return str(self.answer_array)
@@ -125,19 +128,27 @@ class NumberIndex:
         return len(self.number_array)
 
 
+def num_input():
+    i = 0
+    while True:
+        num = int(input('숫자를 입력하세요: '))
+        answer_array.enqueue(num)
+        if answer_array.answer_array[0] == 0:
+            print('첫째 자리에는 0이 입력될 수 없습니다.')
+            answer_array.pop()
+        else:
+            i += 1
+        if i == 4:
+            break
+
+
 # 아직 사용하면 안됨!
 test_array = QuestionNumber()
 answer_array = AnswerNumber()
 rule_array = Rule()
 number_array = NumberIndex()
-
-answer_array.enqueue(1)
-answer_array.enqueue(2)
-answer_array.enqueue(3)
-answer_array.enqueue(4)
-rule_array.rule_append()
 print(test_array)
+num_input()
 print(answer_array)
 print(rule_array)
 print(number_array)
-
