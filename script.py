@@ -30,7 +30,6 @@ class QuestionNumber:
 
     def __init__(self):
         self.test_array = random.sample(init_array, 4)
-
         # 만약 0이 맨 앞자리에 올 경우, 숫자를 다시 추첨함.
         while True:
             if self.test_array[0] == 0:
@@ -38,13 +37,14 @@ class QuestionNumber:
             else:
                 break
 
-    # test_array의 요소를 보여주는 함수
     def __repr__(self):
         return str(self.test_array)
 
-    # test_array의 길이를 보여주는 함수
     def __len__(self):
         return len(self.test_array)
+
+    def reset(self):
+        self.test_array = random.sample(init_array, 4)
 
 
 class AnswerNumber:
@@ -55,21 +55,14 @@ class AnswerNumber:
     def __init__(self):
         self.answer_array = []
 
-    def enqueue(self, baseball_num):
-        assert type(baseball_num) is int, '0보다 크거나 같은 정수를 입력하세요!'
-        self.answer_array.append(baseball_num)
-
-    # 오직 첫번재로 입력시에만 사용!
-    def pop(self):
-        self.answer_array.pop(0)
-
-    # answer_array의 요소를 보여주는 함수
     def __repr__(self):
         return str(self.answer_array)
 
-    # answer_array의 길이를 보여주는 함수
     def __len__(self):
         return len(self.answer_array)
+
+    def reset(self):
+        self.answer_array = []
 
 
 class Rule:
@@ -80,13 +73,8 @@ class Rule:
     # append를 따로 해야 하는 이유는, rule_array와 test_array는 구별되어야 하기 때문
     def __init__(self):
         self.rule_array = []
-        for _ in range(4):
-            self.rule_array.append(test_array.test_array[_])
-
-    # __init__ 과 따로 두어야 하는 이유는 한 턴이 끝난 후 배열이 초기화 되어야 하기 때문임.
-    def rule_append(self):
-        for _ in answer_array.answer_array:
-            self.rule_array.append(_)
+        for i in range(4):
+            self.rule_array.append(test_array.test_array[i])
 
     def __repr__(self):
         return str(self.rule_array)
@@ -94,14 +82,25 @@ class Rule:
     def __len__(self):
         return len(self.rule_array)
 
+    def rule_append(self):
+        for i in answer_array.answer_array:
+            self.rule_array.append(i)
 
+    # __init__ 과 따로 두어야 하는 이유는 한 턴이 끝난 후 배열이 초기화 되어야 하기 때문임.
+    def reset(self):
+        self.rule_array = []
+        for i in range(4):
+            self.rule_array.append(test_array.test_array[i])
+
+
+# 숫자의 갯수 저장
 class NumberIndex:
     def __init__(self):
         self.number_array = []
 
     def num_append(self):
-        for _ in range(10):
-            self.number_array.append(rule_array.rule_array.count(_))
+        for i in range(10):
+            self.number_array.append(rule_array.rule_array.count(i))
 
     def __repr__(self):
         return str(self.number_array)
@@ -110,36 +109,43 @@ class NumberIndex:
         return len(self.number_array)
 
 
-def num_input():
+# 숫자를 입력받는 함수
+def num_input(answer_array_f):
     num_flag = True
-    # 숫자를 입력받는 함수
     while num_flag:
         num = int(input('숫자를 입력하세요: '))
-        # 숫자의 범위 지정, 숫자는 0에서 10까지임
-        if 0 <= num < 10:
-            answer_array.enqueue(num)
-            # 첫째 짜리에 0을 입력받을 경우, 다시 끄집어냄
-            if answer_array.answer_array[0] == 0:
-                print('첫째 자리에는 0이 입력될 수 없습니다.')
-                answer_array.pop()
-            # 위의 조건을 모두 만족시, array의 길이와 중복되는 숫자 검사
-            else:
-                # count_array는 숫자의 종류를 저장하는 배열로 rule_array와 동일한 역할을 하지만 길이가 다름
-                count_array = []
-                for _ in range(10):
-                    count_array.append(answer_array.answer_array.count(_))
-                # 중복시 숫자를 끄집어냄
-                for _ in count_array:
-                    if _ == 2:
-                        print('중복되는 숫자를 입력할 수 없습니다.')
-                        answer_array.pop()
-            # 플레이어가 4개의 숫자를 조건을 만족하여 입력할 경우, while문 종료
-            if len(answer_array.answer_array) == 4:
-                num_flag = False
+        num_check(num, answer_array_f)
+        if len(answer_array_f) == 4:
+            num_flag = False
+    # 숫자를 받은 즉시 number_array를 만든다.
+    rule_array.rule_append()
+    number_array.num_append()
+
+
+# 숫자의 범위 지정 및 자릿수 검사
+def num_check(num, answer_array_f):
+    if 0 <= num < 10:
+        answer_array_f.append(num)
+        # 첫째 짜리에 0을 입력받을 경우, 다시 끄집어냄
+        if answer_array_f[0] == 0:
+            print('첫째 자리에는 0이 입력될 수 없습니다.')
+            answer_array_f.pop()
+        # 위의 조건을 모두 만족시, array의 길이와 중복되는 숫자 검사
         else:
-            print('0보다 크거나 같고 10보다 작은 수를 입력하세요.')
+            # count_array는 숫자의 종류를 저장하는 배열로 rule_array와 동일한 역할을 하지만 길이가 다름
+            count_array = []
+            for i in range(10):
+                count_array.append(answer_array_f.count(i))
+            # 중복시 숫자를 끄집어냄
+            for i in count_array:
+                if i == 2:
+                    print('중복되는 숫자를 입력할 수 없습니다.')
+                    answer_array_f.pop()
+    else:
+        print('0보다 크거나 같고 10보다 작은 수를 입력하세요.')
 
 
+# strike인지 ball인지 out인지 체크해주는 함수
 def rule_check(test_array_f, answer_array_f, number_array_f):
     count_2 = number_array_f.count(2)
     strike_count = 0
@@ -147,8 +153,8 @@ def rule_check(test_array_f, answer_array_f, number_array_f):
     if count_2 == 0:
         print('OUT')
     else:
-        for _ in range(4):
-            if test_array_f[_] - answer_array_f[_] == 0:
+        for i in range(4):
+            if test_array_f[i] == answer_array_f[i]:
                 strike_count += 1
                 ball_count = count_2 - strike_count
         if strike_count == 0:
@@ -157,6 +163,8 @@ def rule_check(test_array_f, answer_array_f, number_array_f):
             print('%dS' % strike_count)
         elif strike_count != 0 and ball_count != 0:
             print('%dS %dB' % (strike_count, ball_count))
+
+# Todo: 시도횟수 count 만들기, try 문으로 str 입력받지 못하게 하기
 
 
 # 아직 사용하면 안됨!
