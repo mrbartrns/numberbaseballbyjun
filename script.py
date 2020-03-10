@@ -1,5 +1,4 @@
 import random
-import unittest
 
 init_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -99,7 +98,6 @@ class Rule:
 class NumberIndex:
     def __init__(self):
         self.number_array = []
-        self.Index_array = []
 
     def num_append(self):
         for _ in range(10):
@@ -142,8 +140,23 @@ def num_input():
             print('0보다 크거나 같고 10보다 작은 수를 입력하세요.')
 
 
-def rule_check(number_array, index_array):
-    pass
+def rule_check(test_array_f, answer_array_f, number_array_f):
+    count_2 = number_array_f.count(2)
+    strike_count = 0
+    ball_count = 0
+    if count_2 == 0:
+        print('OUT')
+    else:
+        for _ in range(4):
+            if test_array_f[_] - answer_array_f[_] == 0:
+                strike_count += 1
+                ball_count = count_2 - strike_count
+        if strike_count == 0:
+            print('%dB' % ball_count)
+        elif ball_count == 0:
+            print('%dS' % strike_count)
+        elif strike_count != 0 and ball_count != 0:
+            print('%dS %dB' % (strike_count, ball_count))
 
 
 # 아직 사용하면 안됨!
