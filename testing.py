@@ -110,10 +110,13 @@ class NumberIndex:
 def num_input(answer_array_f):
     num_flag = True
     while num_flag:
-        num = int(input('숫자를 입력하세요: '))
-        num_check(num, answer_array_f)
-        if len(answer_array_f) == 4:
-            num_flag = False
+        try:
+            num = int(input('숫자를 입력하세요: '))
+            num_check(num, answer_array_f)
+            if len(answer_array_f) == 4:
+                num_flag = False
+        except ValueError:
+            print('숫자만 입력할 수 있습니다.')
     rule_array.rule_append()
     number_array.num_append()
 
