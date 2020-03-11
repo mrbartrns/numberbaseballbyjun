@@ -71,10 +71,10 @@ class Rule:
     """
 
     # append를 따로 해야 하는 이유는, rule_array와 test_array는 구별되어야 하기 때문
-    def __init__(self):
+    def __init__(self, test_array_f):
         self.rule_array = []
         for i in range(4):
-            self.rule_array.append(test_array.test_array[i])
+            self.rule_array.append(test_array_f[i])
 
     def __repr__(self):
         return str(self.rule_array)
@@ -82,15 +82,15 @@ class Rule:
     def __len__(self):
         return len(self.rule_array)
 
-    def rule_append(self):
-        for i in answer_array.answer_array:
+    def rule_append(self, answer_array_f):
+        for i in answer_array_f:
             self.rule_array.append(i)
 
     # __init__ 과 따로 두어야 하는 이유는 한 턴이 끝난 후 배열이 초기화 되어야 하기 때문임.
-    def reset(self):
+    def reset(self, test_array_f):
         self.rule_array = []
         for i in range(4):
-            self.rule_array.append(test_array.test_array[i])
+            self.rule_array.append(test_array_f[i])
 
 
 # 숫자의 갯수 저장
@@ -98,30 +98,15 @@ class NumberIndex:
     def __init__(self):
         self.number_array = []
 
-    def num_append(self):
+    def num_append(self, rule_array_f):
         for i in range(10):
-            self.number_array.append(rule_array.rule_array.count(i))
+            self.number_array.append(rule_array_f.count(i))
 
     def __repr__(self):
         return str(self.number_array)
 
     def __len__(self):
         return len(self.number_array)
-
-
-# 숫자를 입력받는 함수
-def num_input(answer_array_f):
-    num_flag = True
-    while num_flag:
-        try:
-            num = int(input('숫자를 입력하세요: '))
-            num_check(num, answer_array_f)
-            if len(answer_array_f) == 4:
-                num_flag = False
-        except ValueError:
-            print('숫자만 입력할 수 있습니다.')
-    rule_array.rule_append()
-    number_array.num_append()
 
 
 # 숫자의 범위 지정 및 자릿수 검사
@@ -149,15 +134,16 @@ def num_check(num, answer_array_f):
 
 # strike인지 ball인지 out인지 체크해주는 함수
 def rule_check(test_array_f, answer_array_f, number_array_f):
+    print(answer_array_f)
     count_2 = number_array_f.count(2)
     strike_count = 0
+    ball_count = count_2 - strike_count
     if count_2 == 0:
         print('OUT')
     else:
         for i in range(4):
             if test_array_f[i] == answer_array_f[i]:
                 strike_count += 1
-        ball_count = count_2 - strike_count
         if strike_count == 0:
             print('%dB' % ball_count)
         elif ball_count == 0:
@@ -165,25 +151,33 @@ def rule_check(test_array_f, answer_array_f, number_array_f):
         elif strike_count != 0 and ball_count != 0:
             print('%dS %dB' % (strike_count, ball_count))
 
+
 # Todo: 시도횟수 count 만들기
-
-
-def play_round(test_array_f, answer_array_f, number_array_f):
-    num_input(answer_array_f)
-    rule_check(test_array_f, answer_array_f, number_array_f)
-
-
 def game_over():
     print('게임이 종료됩니다. 플레이 해주셔서 감사합니다.')
 
 
 def play_game():
     welcome()
-    playing = True
-    while playing:
-        object_make()
-        play_round()
-        pass
+    round_on = True
+    test_array = QuestionNumber()
+    answer_array = AnswerNumber()
+    rule_array = Rule(test_array.test_array)
+    number_array = NumberIndex()
+    while round_on:
+        num_flag = True
+        while num_flag:
+            try:
+                num = int(input('숫자를 입력하세요: '))
+                num_check(num, answer_array.answer_array)
+                if len(answer_array.answer_array) == 4:
+                    num_flag = False
+            except ValueError:
+                print('숫자만 입력할 수 있습니다.')
+        rule_array.rule_append(answer_array.answer_array)
+        number_array.num_append(rule_array.rule_array)
+        rule_check(test_array.test_array, answer_array.answer_array, number_array.number_array)
+        break
 
     y_n_string = input('게임을 다시 시작합니까? 시작하려면 Y를, 종료하려면 N을 누르세요: ')
     while True:
@@ -198,8 +192,5 @@ def play_game():
         except TypeError:
             print('Y(y) 또는 N(n)만을 입력하세요.')
 
-# 아직 사용하면 안됨!
-test_array = QuestionNumber()
-answer_array = AnswerNumber()
-rule_array = Rule()
-number_array = NumberIndex()
+
+play_game()
