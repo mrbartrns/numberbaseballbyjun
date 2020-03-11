@@ -208,5 +208,3 @@ def replay():
         except TypeError:
             print('Y(y) 또는 N(n)만을 입력하세요.')
 
-
-
