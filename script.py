@@ -137,19 +137,14 @@ def rule_check(test_array_f, answer_array_f, number_array_f):
     print(answer_array_f)
     count_2 = number_array_f.count(2)
     strike_count = 0
-    ball_count = count_2 - strike_count
     if count_2 == 0:
-        print('OUT')
+        return -1
     else:
         for i in range(4):
             if test_array_f[i] == answer_array_f[i]:
                 strike_count += 1
-        if strike_count == 0:
-            print('%dB' % ball_count)
-        elif ball_count == 0:
-            print('%dS' % strike_count)
-        elif strike_count != 0 and ball_count != 0:
-            print('%dS %dB' % (strike_count, ball_count))
+        ball_count = count_2 - strike_count
+        return strike_count, ball_count
 
 
 # Todo: 시도횟수 count 만들기
@@ -176,10 +171,21 @@ def play_game():
                 print('숫자만 입력할 수 있습니다.')
         rule_array.rule_append(answer_array.answer_array)
         number_array.num_append(rule_array.rule_array)
-        rule_check(test_array.test_array, answer_array.answer_array, number_array.number_array)
+        rule_check_test = rule_check(test_array.test_array, answer_array.answer_array, number_array.number_array)
+        if rule_check_test == -1:
+            print('OUT')
+        if rule_check_test[0] == 0:
+            print('%dB' % rule_check_test[1])
+        elif rule_check_test[1] == 0:
+            print('%dS' % rule_check_test[0])
+        elif rule_check_test[0] != 0 and rule_check_test[1] != 0:
+            print('%dS %dB' % (rule_check_test[0], rule_check_test[1]))
         break
 
+
+def replay():
     y_n_string = input('게임을 다시 시작합니까? 시작하려면 Y를, 종료하려면 N을 누르세요: ')
+    pass
     while True:
         try:
             if y_n_string == 'Y' or 'y':
@@ -193,4 +199,3 @@ def play_game():
             print('Y(y) 또는 N(n)만을 입력하세요.')
 
 
-play_game()
