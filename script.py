@@ -166,7 +166,7 @@ def rule_check(test_array_f, answer_array_f, number_array_f):
         elif strike_count != 0 and ball_count != 0:
             print('%dS %dB' % (strike_count, ball_count))
 
-# Todo: 시도횟수 count 만들기, try 문으로 str 입력받지 못하게 하기
+# Todo: 시도횟수 count 만들기
 
 
 # 아직 사용하면 안됨!
