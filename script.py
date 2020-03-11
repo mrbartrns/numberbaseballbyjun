@@ -115,8 +115,8 @@ def num_check(num, answer_array_f):
         answer_array_f.append(num)
         # 첫째 짜리에 0을 입력받을 경우, 다시 끄집어냄
         if answer_array_f[0] == 0:
-            print('첫째 자리에는 0이 입력될 수 없습니다.')
             answer_array_f.pop()
+            return -1
         # 위의 조건을 모두 만족시, array의 길이와 중복되는 숫자 검사
         else:
             # count_array는 숫자의 종류를 저장하는 배열로 rule_array와 동일한 역할을 하지만 길이가 다름
@@ -126,10 +126,11 @@ def num_check(num, answer_array_f):
             # 중복시 숫자를 끄집어냄
             for i in count_array:
                 if i == 2:
-                    print('중복되는 숫자를 입력할 수 없습니다.')
                     answer_array_f.pop()
+                    return 1
+            return 0
     else:
-        print('0보다 크거나 같고 10보다 작은 수를 입력하세요.')
+        return 2
 
 
 # strike인지 ball인지 out인지 체크해주는 함수
@@ -152,6 +153,7 @@ def game_over():
     print('게임이 종료됩니다. 플레이 해주셔서 감사합니다.')
 
 
+# Todo: 'n번째 숫자를 입력하세요.'로 변경하기
 def play_game():
     welcome()
     round_on = True
@@ -164,7 +166,15 @@ def play_game():
         while num_flag:
             try:
                 num = int(input('숫자를 입력하세요: '))
-                num_check(num, answer_array.answer_array)
+                num_checking = num_check(num, answer_array.answer_array)
+                if num_checking == -1:
+                    print('첫째 자리에는 0이 입력될 수 없습니다.')
+                elif num_checking == 0:
+                    pass
+                elif num_checking == 1:
+                    print('중복되는 숫자를 입력할 수 없습니다.')
+                elif num_checking == 2:
+                    print('0보다 크거나 같고 10보다 작은 수를 입력하세요.')
                 if len(answer_array.answer_array) == 4:
                     num_flag = False
             except ValueError:
@@ -174,7 +184,7 @@ def play_game():
         rule_check_test = rule_check(test_array.test_array, answer_array.answer_array, number_array.number_array)
         if rule_check_test == -1:
             print('OUT')
-        if rule_check_test[0] == 0:
+        elif rule_check_test[0] == 0:
             print('%dB' % rule_check_test[1])
         elif rule_check_test[1] == 0:
             print('%dS' % rule_check_test[0])
@@ -197,5 +207,6 @@ def replay():
                 raise TypeError
         except TypeError:
             print('Y(y) 또는 N(n)만을 입력하세요.')
+
 
 
