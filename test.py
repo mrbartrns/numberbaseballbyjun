@@ -3,7 +3,7 @@ from script import *
 from testing import *
 
 
-class RuleCheckTestcase(unittest.TestCase):
+class RuleCheckTest(unittest.TestCase):
 
     def test_rule_check_ball(self):
         rule1 = rule_check([8, 4, 9, 1], [5, 6, 0, 4], [1, 1, 0, 0, 2, 1, 1, 0, 1, 1])
