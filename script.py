@@ -151,14 +151,13 @@ def num_check(num, answer_array_f):
 def rule_check(test_array_f, answer_array_f, number_array_f):
     count_2 = number_array_f.count(2)
     strike_count = 0
-    ball_count = 0
     if count_2 == 0:
         print('OUT')
     else:
         for i in range(4):
             if test_array_f[i] == answer_array_f[i]:
                 strike_count += 1
-                ball_count = count_2 - strike_count
+        ball_count = count_2 - strike_count
         if strike_count == 0:
             print('%dB' % ball_count)
         elif ball_count == 0:
@@ -168,6 +167,36 @@ def rule_check(test_array_f, answer_array_f, number_array_f):
 
 # Todo: 시도횟수 count 만들기
 
+
+def play_round(test_array_f, answer_array_f, number_array_f):
+    num_input(answer_array_f)
+    rule_check(test_array_f, answer_array_f, number_array_f)
+
+
+def game_over():
+    print('게임이 종료됩니다. 플레이 해주셔서 감사합니다.')
+
+
+def play_game():
+    welcome()
+    playing = True
+    while playing:
+        object_make()
+        play_round()
+        pass
+
+    y_n_string = input('게임을 다시 시작합니까? 시작하려면 Y를, 종료하려면 N을 누르세요: ')
+    while True:
+        try:
+            if y_n_string == 'Y' or 'y':
+                pass
+            elif y_n_string == 'N' or 'n':
+                game_over()
+
+            else:
+                raise TypeError
+        except TypeError:
+            print('Y(y) 또는 N(n)만을 입력하세요.')
 
 # 아직 사용하면 안됨!
 test_array = QuestionNumber()
