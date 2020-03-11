@@ -1,3 +1,6 @@
+from script import *
+
+
 def num_check(num, answer_array_f):
     if 0 <= num < 10:
         answer_array_f.append(num)
@@ -39,4 +42,3 @@ while num_flag:
             num_flag = False
     except ValueError:
         print('숫자만 입력할 수 있습니다.')
-print(answer)
