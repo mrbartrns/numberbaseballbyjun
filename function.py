@@ -1,3 +1,6 @@
+# Function.py의 코드는 return값이 존재해야 함.
+
+
 # 숫자의 범위 지정 및 자릿수 검사
 def num_check(num, answer_array_f):
     if 0 <= num < 10:
