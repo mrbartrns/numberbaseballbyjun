@@ -110,24 +110,30 @@ class NumberIndex:
     def __len__(self):
         return len(self.number_array)
 
+    def reset(self):
+        self.number_array = []
 
-# Todo: 시도횟수 count 만들기
+
 def game_over():
     print('게임이 종료됩니다. 플레이 해주셔서 감사합니다.')
 
 
-# Todo: 'n번째 숫자를 입력하세요.'로 변경하기
+# Todo: 시도횟수 카운트하기
 def play_game():
     welcome()
     round_on = True
+    num_flag = True
     test_array = QuestionNumber()
     answer_array = AnswerNumber()
     rule_array = Rule(test_array.test_array)
     number_array = NumberIndex()
+    round_count = 0
     # 한세트의 게임이 끝날때 까지 진행
     while round_on:
-        num_flag = True
         script_key = 1
+        round_count += 1
+        round_string = f'시도 횟수: {round_count}회'
+        print(round_string)
         # 숫자 4개를 받을 때 까지 진행
         while num_flag:
             try:
@@ -160,7 +166,17 @@ def play_game():
             print('%dS' % rule_check_test[0])
         elif rule_check_test[0] != 0 and rule_check_test[1] != 0:
             print('%dS %dB' % (rule_check_test[0], rule_check_test[1]))
-        break
+
+        # 4 strike 달성 시:
+        if rule_check_test[0] == 4:
+            # Todo: 반드시 수정해야할 것, 그렇지 않으면 재경기 시작 못함
+            round_on = False
+        else:
+            round_on = True
+            num_flag = True
+            answer_array.reset()
+            rule_array.reset(test_array.test_array)
+            number_array.reset()
 
 
 def replay():
