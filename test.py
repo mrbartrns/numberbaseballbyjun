@@ -33,6 +33,22 @@ class RuleCheckTest(unittest.TestCase):
         num4 = num_check(10, [3, 0, 7])
         self.assertEqual(num4, 2)
 
+    def test_replay_check1(self):
+        rep1 = replay('Y')
+        self.assertEqual(rep1, 0)
+
+    def test_replay_check2(self):
+        rep2 = replay('y')
+        self.assertEqual(rep2, 0)
+
+    def test_replay_check3(self):
+        rep3 = replay('N')
+        self.assertEqual(rep3, -1)
+
+    def test_replay_check4(self):
+        rep4 = replay('n')
+        self.assertEqual(rep4, -1)
+
 
 if __name__ == '__main__':
     unittest.main()

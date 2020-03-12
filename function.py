@@ -40,3 +40,17 @@ def rule_check(test_array_f, answer_array_f, number_array_f):
         return strike_count, ball_count
 
 
+# Todo: 함수수정, 오류 있음.
+def replay(y_n):
+    while True:
+        try:
+            if y_n == 'Y' or y_n == 'y':
+                return 0
+            elif y_n == 'N' or y_n == 'n':
+                return -1
+            else:
+                raise TypeError
+        except TypeError:
+            print('Y(y) 또는 N(n)만을 입력하세요.')
+
+
