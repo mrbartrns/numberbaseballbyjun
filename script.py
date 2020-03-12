@@ -118,7 +118,7 @@ def game_over():
     print('게임이 종료됩니다. 플레이 해주셔서 감사합니다.')
 
 
-# Todo: 시도횟수 카운트하기
+# 게임을 실행하는 함수
 def play_game():
     welcome()
     round_on = True
@@ -134,6 +134,8 @@ def play_game():
         round_count += 1
         round_string = f'시도 횟수: {round_count}회'
         print(round_string)
+        # Todo: 지워야 함!
+        print(test_array.test_array)
         # 숫자 4개를 받을 때 까지 진행
         while num_flag:
             try:
@@ -169,30 +171,27 @@ def play_game():
 
         # 4 strike 달성 시:
         if rule_check_test[0] == 4:
-            # Todo: 반드시 수정해야할 것, 그렇지 않으면 재경기 시작 못함
-            round_on = False
+            conguratulation_string = f'축하합니다. 당신은 {round_count}번의 시도 끝에 맞추셨습니다.'
+            print(conguratulation_string)
+            y_n_string = input('게임을 종료합니까? 종료하려면 Y를, 다시 시작하려면 N을 누르세요: ')
+            regame = replay(y_n_string)
+            if regame == 0:
+                round_on = False
+            elif regame == -1:
+                round_on = True
+                num_flag = True
+                round_count = 0
+                test_array.reset()
+                answer_array.reset()
+                rule_array.reset(test_array.test_array)
+                number_array.reset()
+
         else:
             round_on = True
             num_flag = True
             answer_array.reset()
             rule_array.reset(test_array.test_array)
             number_array.reset()
-
-
-def replay():
-    y_n_string = input('게임을 다시 시작합니까? 시작하려면 Y를, 종료하려면 N을 누르세요: ')
-    pass
-    while True:
-        try:
-            if y_n_string == 'Y' or 'y':
-                pass
-            elif y_n_string == 'N' or 'n':
-                game_over()
-
-            else:
-                raise TypeError
-        except TypeError:
-            print('Y(y) 또는 N(n)만을 입력하세요.')
 
 
 if __name__ == "__main__":
