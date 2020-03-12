@@ -1,6 +1,6 @@
 import unittest
 from script import *
-from testing import *
+from function import *
 
 
 class RuleCheckTest(unittest.TestCase):

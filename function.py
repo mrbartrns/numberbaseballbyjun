@@ -1,6 +1,4 @@
-from script import *
-
-
+# 숫자의 범위 지정 및 자릿수 검사
 def num_check(num, answer_array_f):
     if 0 <= num < 10:
         answer_array_f.append(num)
@@ -24,21 +22,18 @@ def num_check(num, answer_array_f):
         return 2
 
 
-answer = []
-num_flag = True
-while num_flag:
-    try:
-        num = int(input('숫자를 입력하세요: '))
-        num_checking = num_check(num, answer)
-        if num_checking == -1:
-            print('첫째 자리에는 0이 입력될 수 없습니다.')
-        elif num_checking == 0:
-            pass
-        elif num_checking == 1:
-            print('중복되는 숫자를 입력할 수 없습니다.')
-        elif num_checking == 2:
-            print('0보다 크거나 같고 10보다 작은 수를 입력하세요.')
-        if len(answer) == 4:
-            num_flag = False
-    except ValueError:
-        print('숫자만 입력할 수 있습니다.')
+# strike인지 ball인지 out인지 체크해주는 함수
+def rule_check(test_array_f, answer_array_f, number_array_f):
+    print(answer_array_f)
+    count_2 = number_array_f.count(2)
+    strike_count = 0
+    if count_2 == 0:
+        return -1
+    else:
+        for i in range(4):
+            if test_array_f[i] == answer_array_f[i]:
+                strike_count += 1
+        ball_count = count_2 - strike_count
+        return strike_count, ball_count
+
+
