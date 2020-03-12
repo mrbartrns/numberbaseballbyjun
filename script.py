@@ -124,9 +124,11 @@ def play_game():
     answer_array = AnswerNumber()
     rule_array = Rule(test_array.test_array)
     number_array = NumberIndex()
+    # 한세트의 게임이 끝날때 까지 진행
     while round_on:
         num_flag = True
         script_key = 1
+        # 숫자 4개를 받을 때 까지 진행
         while num_flag:
             try:
                 script_value = SCRIPT_VALUE_DIC[str(script_key)]
