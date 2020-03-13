@@ -134,9 +134,14 @@ def play_game():
         round_count += 1
         round_string = f'시도 횟수: {round_count}회'
         print(round_string)
+        # Todo: 지울 것!
+        print(test_array.test_array)
         # 숫자 4개를 받을 때 까지 진행
         while num_flag:
             try:
+                # Todo: 지울 것!
+                print(answer_array)
+                print(number_array)
                 script_value = SCRIPT_VALUE_DIC[str(script_key)]
                 script_value_input_string = f'{script_value}번째 값을 입력하세요:'
                 print(script_value_input_string, end=' ')

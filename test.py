@@ -1,6 +1,7 @@
 import unittest
 from script import *
 from function import *
+import random
 
 
 class RuleCheckTest(unittest.TestCase):

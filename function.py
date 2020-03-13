@@ -40,7 +40,6 @@ def rule_check(test_array_f, answer_array_f, number_array_f):
         return strike_count, ball_count
 
 
-# Todo: 함수수정, 오류 있음.
 def replay(y_n):
     while True:
         try:
