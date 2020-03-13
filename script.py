@@ -163,7 +163,7 @@ def play_game():
         rule_array.rule_append(answer_array.answer_array)
         number_array.num_append(rule_array.rule_array)
         rule_check_test = rule_check(test_array.test_array, answer_array.answer_array, number_array.number_array)
-        if rule_check_test == -1:
+        if rule_check_test[0] == -1:
             print('OUT')
         elif rule_check_test[0] == 0:
             print('%dB' % rule_check_test[1])
