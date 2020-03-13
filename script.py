@@ -134,8 +134,6 @@ def play_game():
         round_count += 1
         round_string = f'시도 횟수: {round_count}회'
         print(round_string)
-        # Todo: 지워야 함!
-        print(test_array.test_array)
         # 숫자 4개를 받을 때 까지 진행
         while num_flag:
             try:
