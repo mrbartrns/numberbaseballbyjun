@@ -32,7 +32,7 @@ def rule_check(test_array_f, answer_array_f, number_array_f):
     count_2 = number_array_f.count(2)
     strike_count = 0
     if count_2 == 0:
-        return -1, 0
+        return -1, -1
     else:
         for i in range(4):
             if test_array_f[i] == answer_array_f[i]:
